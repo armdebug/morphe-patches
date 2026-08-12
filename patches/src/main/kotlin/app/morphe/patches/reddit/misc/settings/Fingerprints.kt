@@ -123,3 +123,22 @@ internal object GooglePlayUpdateCheckFingerprint : Fingerprint(
     )
 )
 
+internal object PlayStoreVerificationFingerprint : Fingerprint(
+    returnType = "Z",
+    parameters = listOf(
+        "Landroid/content/Context;"
+    ),
+    filters = listOf(
+        string("Play Store package is not found."),
+    )
+)
+
+internal object CheckIntegrityPlayStoreFingerprint : Fingerprint(
+    returnType = "I",
+    parameters = listOf(
+        "Landroid/content/Context;"
+    ),
+    filters = listOf(
+        string("com.android.vending")
+    )
+)

@@ -92,6 +92,10 @@ val settingsPatch = bytecodePatch(
         addAppResources("shared")
         addAppResources("reddit")
 
+
+        // Force Play Store Verification checks to return false
+        PlayStoreVerificationFingerprint.method.returnEarly(false)
+
         if (is_2026_25_0_or_greater) {
             StartUrlActivityFingerprint.let {
                 val index = it.instructionMatches.last().index
@@ -210,5 +214,8 @@ val settingsPatch = bytecodePatch(
 
         // Turn off Google Play in app update prompt.
         GooglePlayUpdateCheckFingerprint.method.returnEarly(null);
+
+        // For Reddit-v2026.14.0
+        CheckIntegrityPlayStoreFingerprint.method.returnEarly(0)
     }
 }
